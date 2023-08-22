@@ -14,7 +14,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define UNICODE_SELECTED_MODES UC_MAC, UC_LNX
+// #define UNICODE_SELECTED_MODES UC_MAC, UC_LNX
+#define UNICODE_SELECTED_MODES UNICODE_MODE_MACOS, UNICODE_MODE_LINUX, UNICODE_MODE_WINCOMPOSE
 
 #define MOUSEKEY_INTERVAL 12
 #define MOUSEKEY_MAX_SPEED 6

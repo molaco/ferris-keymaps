@@ -14,7 +14,8 @@
 #define _TMUX 4
 #define _MOUSE 5
 #define _MISC 6
-//#define _AWSWM 7
+#define _GAME_1 7
+#define _GAME_2 8
 
 enum custom_keycodes {
   TM_NEXT = SAFE_RANGE,
@@ -38,7 +39,8 @@ enum custom_keycodes {
 #define L_NAV       MO(_NAV)
 #define L_SYM       MO(_SYM)
 #define L_MOUSE     TG(_MOUSE)
-//#define L_AWSWM     TG(_AWSWM)
+#define L_GAME_1    TG(_GAME_1)
+#define L_GAME_2    MO(_GAME_2)
 
 #define K_PRINT     (QK_LCTL | QK_LSFT | QK_LGUI | KC_4)
 
@@ -120,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,                          KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,ES_ACUT ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                     L_NAV   ,    KC_LSFT ,        KC_SPC  ,    L_SYM
+                                     L_NAV   ,    KC_LCTL ,        KC_SPC  ,    L_SYM
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
@@ -139,11 +141,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-     KC_ESC  ,L_MOUSE ,XXXXXXX ,XXXXXXX , XXXXXXX,                          KC_BSPC ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     KC_ESC  ,L_MOUSE ,L_GAME_1, XXXXXXX, KC_MPLY,                          KC_BSPC ,XXXXXXX ,KC_HOME ,KC_END  ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     OS_SFT  ,OS_CTRL ,OS_ALT  ,OS_GUI  ,KC_TAB  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,XXXXXXX  ,
+     OS_SFT  ,OS_CTRL ,OS_ALT  ,OS_GUI  ,KC_TAB  ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RIGHT,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_ENT  ,XXXXXXX ,XXXXXXX ,XXXXXXX ,KC_CAPS ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_ENT  ,XXXXXXX ,KC_PGUP ,KC_PGDN ,KC_CAPS ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      _______ ,    _______ ,        _______ ,    _______
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -155,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
      OS_SFT  ,OS_CTRL ,OS_ALT  ,OS_GUI  ,KC_F11  ,                          KC_F12  ,ES_PLUS ,ES_EQL  ,ES_ASTR ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,ES_MINS ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
   //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                      _______ ,    _______ ,        _______ ,    _______
   //                                └────────┘   └────────┘       └────────┘   └────────┘
@@ -173,17 +175,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                                └────────┘   └────────┘       └────────┘   └────────┘
   ),
 
-//  [_AWSWM] = LAYOUT(
-//  //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-//     XXXXXXX ,XXXXXXX ,L_AWSWM ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
-//  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-//     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          K_LSWPS ,K_RSWPS ,K_LSWPC ,K_RSWPC ,XXXXXXX ,
-//  //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-//     XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
-//  //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-//                                     XXXXXXX ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
-//  //                                └────────┘   └────────┘       └────────┘   └────────┘
-//  ),
+ [_GAME_1] = LAYOUT(
+ //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
+    KC_ESC  ,KC_Q    ,KC_W    ,KC_E    ,KC_R    ,                          L_GAME_1,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+    KC_LSFT ,KC_A    ,KC_S    ,KC_D    ,KC_F    ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+    KC_LCTL ,KC_Z    ,KC_G    ,KC_C    ,KC_V    ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
+                                    KC_SPC,      L_GAME_2,        XXXXXXX ,    XXXXXXX
+ //                                └────────┘   └────────┘       └────────┘   └────────┘
+ ),
+
+ [_GAME_2] = LAYOUT(
+ //┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
+    KC_1    ,KC_2    ,XXXXXXX ,KC_3    ,KC_4    ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+    XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,KC_TAB  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+    KC_LALT ,XXXXXXX ,XXXXXXX ,KC_B    ,KC_M    ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
+ //└────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______ ,    XXXXXXX ,        XXXXXXX ,    XXXXXXX
+ //                                └────────┘   └────────┘       └────────┘   └────────┘
+ ),
 };
 
 #define TMUX_PREFIX SS_DOWN(X_LCTL) "b" SS_UP(X_LCTL)
